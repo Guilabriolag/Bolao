@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Motor de Campanhas</title>
+    
+    <!-- CSS -->
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <!-- ========== HEADER ========== -->
+    <header id="appHeader">
+        <div>
+            <h1 id="campaignTitle">🏗️ Motor de Campanhas</h1>
+            <small id="campaignSubtitle">Carregando...</small>
+        </div>
+        <span class="user-badge" id="userBadge" onclick="campaign?.toggleLogin()">
+            👤 Visitante
+        </span>
+    </header>
+
+    <!-- ========== TABS ========== -->
+    <nav class="tabs" id="tabContainer"></nav>
+
+    <!-- ========== CONTEÚDO ========== -->
+    <main id="mainContent"></main>
+
+    <!-- ========== CARRINHO ========== -->
+    <div class="cart" id="cartContainer">
+        <div class="cart-header">
+            <span>
+                <strong id="cartLabel">🛒 Selecionados</strong>
+                <span class="badge" id="cartCount">0</span>
+            </span>
+            <button class="btn btn-sm btn-outline" onclick="campaign?.clearCart()">Limpar</button>
+        </div>
+        <div class="cart-items" id="cartItems"></div>
+        <div class="cart-total">
+            Total: <span id="cartTotal">R$ 0,00</span>
+        </div>
+        <button class="btn btn-success btn-block" onclick="campaign?.checkout()" id="btnCheckout">
+            📤 Finalizar
+        </button>
+    </div>
+
+    <!-- ========== MODAL LOGIN ========== -->
+    <div class="modal-overlay" id="modalLogin">
+        <div class="modal">
+            <span class="modal-close" onclick="closeModal('modalLogin')">&times;</span>
+            <h3>🔑 Login</h3>
+            <p class="text-muted">Digite seu nome para participar!</p>
+            <input type="text" id="loginNome" placeholder="Seu nome" class="input-field">
+            <button class="btn btn-primary btn-block mt-8" onclick="campaign?.login()">Entrar</button>
+            <p class="text-muted text-center mt-8">👉 Ou continue como visitante</p>
+        </div>
+    </div>
+
+    <!-- ========== MODAL CHECKOUT ========== -->
+    <div class="modal-overlay" id="modalCheckout">
+        <div class="modal">
+            <span class="modal-close" onclick="closeModal('modalCheckout')">&times;</span>
+            <h3 id="checkoutTitle">📋 Resumo</h3>
+            <div id="checkoutContent"></div>
+            <div class="modal-actions">
+                <button class="btn btn-success" onclick="campaign?.confirmCheckout()">✅ Confirmar</button>
+                <button class="btn btn-outline" onclick="closeModal('modalCheckout')">Voltar</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- ========== TOAST ========== -->
+    <div id="toastContainer"></div>
+
+    <!-- ========== JAVASCRIPT ========== -->
+    <script src="core.js"></script>
+    <script src="plugins.js"></script>
+    <script src="app.js"></script>
+</body>
+</html>
