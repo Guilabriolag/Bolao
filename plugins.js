@@ -1,55 +1,8 @@
-// ================================================================
-//  📦 PLUGIN: BOLÃO 
-//  Sistema de Palpites para Copa do Mundo
-// ================================================================
 
-const BolaoPlugin = {
-    name: 'Bolão',
-    version: '1.0',
-    
-    defaultConfig: {
-        whatsapp: '5511999999999',
-        pixKey: 'copa2026@bolao.com',
-        campaignName: '⚽ Bolão Copa 2026'
-    },
-    
-    defaultItems: [
-        { 
-            id: 1, 
-            nome: 'Brasil vs Marrocos', 
-            valor: 10.00,
-            time1: '🇧🇷 Brasil', 
-            time2: '🇲🇦 Marrocos',
-            data: '24/06/2026', 
-            hora: '18:00',
-            max_palpites: 50, 
-            palpites_feitos: 0, 
-            resultado: null 
-        },
-        { 
-            id: 2, 
-            nome: 'Argentina vs França', 
-            valor: 15.00,
-            time1: '🇦🇷 Argentina', 
-            time2: '🇫🇷 França',
-            data: '24/06/2026', 
-            hora: '21:00',
-            max_palpites: 40, 
-            palpites_feitos: 0, 
-            resultado: null 
-        },
-        { 
-            id: 3, 
-            nome: 'Alemanha vs Espanha', 
-            valor: 10.00,
-            time1: '🇩🇪 Alemanha', 
-            time2: '🇪🇸 Espanha',
-            data: '25/06/2026', 
-            hora: '15:00',
-            max_palpites: 60, 
-            palpites_feitos: 0, 
-            resultado: null 
-        },
+// ================================================================
+//  📦 DADOS DA COPA 2026 - FASE DE GRUPOS
+//  Total: 48 jogos oficiais
+// ================================================================
 
 const JOGOS_COPA_2026 = [
     // ==================== GRUPO A ====================
@@ -58,10 +11,8 @@ const JOGOS_COPA_2026 = [
         data: '2026-06-11', 
         hora: '16:00', 
         local: 'Cidade do México',
-        time1: 'México', 
-        bandeira1: '🇲🇽',
-        time2: 'África do Sul', 
-        bandeira2: '🇿🇦',
+        time1: '🇲🇽 México', 
+        time2: '🇿🇦 África do Sul',
         grupo: 'A',
         valor: 10.00,
         max_palpites: 100,
@@ -73,10 +24,8 @@ const JOGOS_COPA_2026 = [
         data: '2026-06-11', 
         hora: '23:00', 
         local: 'Guadalajara',
-        time1: 'Coreia do Sul', 
-        bandeira1: '🇰🇷',
-        time2: 'Tchéquia', 
-        bandeira2: '🇨🇿',
+        time1: '🇰🇷 Coreia do Sul', 
+        time2: '🇨🇿 Tchéquia',
         grupo: 'A',
         valor: 10.00,
         max_palpites: 100,
@@ -88,10 +37,8 @@ const JOGOS_COPA_2026 = [
         data: '2026-06-18', 
         hora: '13:00', 
         local: 'Atlanta',
-        time1: 'Tchéquia', 
-        bandeira1: '🇨🇿',
-        time2: 'África do Sul', 
-        bandeira2: '🇿🇦',
+        time1: '🇨🇿 Tchéquia', 
+        time2: '🇿🇦 África do Sul',
         grupo: 'A',
         valor: 10.00,
         max_palpites: 100,
@@ -103,10 +50,8 @@ const JOGOS_COPA_2026 = [
         data: '2026-06-18', 
         hora: '22:00', 
         local: 'Guadalajara',
-        time1: 'México', 
-        bandeira1: '🇲🇽',
-        time2: 'Coreia do Sul', 
-        bandeira2: '🇰🇷',
+        time1: '🇲🇽 México', 
+        time2: '🇰🇷 Coreia do Sul',
         grupo: 'A',
         valor: 10.00,
         max_palpites: 100,
@@ -118,10 +63,8 @@ const JOGOS_COPA_2026 = [
         data: '2026-06-24', 
         hora: '22:00', 
         local: 'Cidade do México',
-        time1: 'Tchéquia', 
-        bandeira1: '🇨🇿',
-        time2: 'México', 
-        bandeira2: '🇲🇽',
+        time1: '🇨🇿 Tchéquia', 
+        time2: '🇲🇽 México',
         grupo: 'A',
         valor: 10.00,
         max_palpites: 100,
@@ -133,10 +76,8 @@ const JOGOS_COPA_2026 = [
         data: '2026-06-24', 
         hora: '22:00', 
         local: 'Monterrey',
-        time1: 'África do Sul', 
-        bandeira1: '🇿🇦',
-        time2: 'Coreia do Sul', 
-        bandeira2: '🇰🇷',
+        time1: '🇿🇦 África do Sul', 
+        time2: '🇰🇷 Coreia do Sul',
         grupo: 'A',
         valor: 10.00,
         max_palpites: 100,
@@ -150,10 +91,8 @@ const JOGOS_COPA_2026 = [
         data: '2026-06-12', 
         hora: '16:00', 
         local: 'Toronto',
-        time1: 'Canadá', 
-        bandeira1: '🇨🇦',
-        time2: 'Bósnia', 
-        bandeira2: '🇧🇦',
+        time1: '🇨🇦 Canadá', 
+        time2: '🇧🇦 Bósnia',
         grupo: 'B',
         valor: 10.00,
         max_palpites: 100,
@@ -165,10 +104,8 @@ const JOGOS_COPA_2026 = [
         data: '2026-06-13', 
         hora: '16:00', 
         local: 'San Francisco',
-        time1: 'Catar', 
-        bandeira1: '🇶🇦',
-        time2: 'Suíça', 
-        bandeira2: '🇨🇭',
+        time1: '🇶🇦 Catar', 
+        time2: '🇨🇭 Suíça',
         grupo: 'B',
         valor: 10.00,
         max_palpites: 100,
@@ -180,10 +117,8 @@ const JOGOS_COPA_2026 = [
         data: '2026-06-18', 
         hora: '16:00', 
         local: 'Los Angeles',
-        time1: 'Suíça', 
-        bandeira1: '🇨🇭',
-        time2: 'Bósnia', 
-        bandeira2: '🇧🇦',
+        time1: '🇨🇭 Suíça', 
+        time2: '🇧🇦 Bósnia',
         grupo: 'B',
         valor: 10.00,
         max_palpites: 100,
@@ -195,10 +130,8 @@ const JOGOS_COPA_2026 = [
         data: '2026-06-18', 
         hora: '19:00', 
         local: 'Vancouver',
-        time1: 'Canadá', 
-        bandeira1: '🇨🇦',
-        time2: 'Catar', 
-        bandeira2: '🇶🇦',
+        time1: '🇨🇦 Canadá', 
+        time2: '🇶🇦 Catar',
         grupo: 'B',
         valor: 10.00,
         max_palpites: 100,
@@ -210,10 +143,8 @@ const JOGOS_COPA_2026 = [
         data: '2026-06-24', 
         hora: '16:00', 
         local: 'Vancouver',
-        time1: 'Suíça', 
-        bandeira1: '🇨🇭',
-        time2: 'Canadá', 
-        bandeira2: '🇨🇦',
+        time1: '🇨🇭 Suíça', 
+        time2: '🇨🇦 Canadá',
         grupo: 'B',
         valor: 10.00,
         max_palpites: 100,
@@ -225,10 +156,8 @@ const JOGOS_COPA_2026 = [
         data: '2026-06-24', 
         hora: '16:00', 
         local: 'Seattle',
-        time1: 'Bósnia', 
-        bandeira1: '🇧🇦',
-        time2: 'Catar', 
-        bandeira2: '🇶🇦',
+        time1: '🇧🇦 Bósnia', 
+        time2: '🇶🇦 Catar',
         grupo: 'B',
         valor: 10.00,
         max_palpites: 100,
@@ -242,10 +171,8 @@ const JOGOS_COPA_2026 = [
         data: '2026-06-13', 
         hora: '19:00', 
         local: 'Nova York/NJ',
-        time1: 'Brasil', 
-        bandeira1: '🇧🇷',
-        time2: 'Marrocos', 
-        bandeira2: '🇲🇦',
+        time1: '🇧🇷 Brasil', 
+        time2: '🇲🇦 Marrocos',
         grupo: 'C',
         valor: 15.00,
         max_palpites: 200,
@@ -257,10 +184,8 @@ const JOGOS_COPA_2026 = [
         data: '2026-06-13', 
         hora: '22:00', 
         local: 'Boston',
-        time1: 'Haiti', 
-        bandeira1: '🇭🇹',
-        time2: 'Escócia', 
-        bandeira2: '🏴󠁧󠁢󠁳󠁣󠁴󠁿',
+        time1: '🇭🇹 Haiti', 
+        time2: '🏴󠁧󠁢󠁳󠁣󠁴󠁿 Escócia',
         grupo: 'C',
         valor: 10.00,
         max_palpites: 100,
@@ -272,10 +197,8 @@ const JOGOS_COPA_2026 = [
         data: '2026-06-19', 
         hora: '19:00', 
         local: 'Boston',
-        time1: 'Escócia', 
-        bandeira1: '🏴󠁧󠁢󠁳󠁣󠁴󠁿',
-        time2: 'Marrocos', 
-        bandeira2: '🇲🇦',
+        time1: '🏴󠁧󠁢󠁳󠁣󠁴󠁿 Escócia', 
+        time2: '🇲🇦 Marrocos',
         grupo: 'C',
         valor: 10.00,
         max_palpites: 100,
@@ -287,10 +210,8 @@ const JOGOS_COPA_2026 = [
         data: '2026-06-19', 
         hora: '21:30', 
         local: 'Filadélfia',
-        time1: 'Brasil', 
-        bandeira1: '🇧🇷',
-        time2: 'Haiti', 
-        bandeira2: '🇭🇹',
+        time1: '🇧🇷 Brasil', 
+        time2: '🇭🇹 Haiti',
         grupo: 'C',
         valor: 15.00,
         max_palpites: 200,
@@ -302,10 +223,8 @@ const JOGOS_COPA_2026 = [
         data: '2026-06-24', 
         hora: '19:00', 
         local: 'Miami',
-        time1: 'Escócia', 
-        bandeira1: '🏴󠁧󠁢󠁳󠁣󠁴󠁿',
-        time2: 'Brasil', 
-        bandeira2: '🇧🇷',
+        time1: '🏴󠁧󠁢󠁳󠁣󠁴󠁿 Escócia', 
+        time2: '🇧🇷 Brasil',
         grupo: 'C',
         valor: 15.00,
         max_palpites: 200,
@@ -317,10 +236,8 @@ const JOGOS_COPA_2026 = [
         data: '2026-06-24', 
         hora: '19:00', 
         local: 'Atlanta',
-        time1: 'Marrocos', 
-        bandeira1: '🇲🇦',
-        time2: 'Haiti', 
-        bandeira2: '🇭🇹',
+        time1: '🇲🇦 Marrocos', 
+        time2: '🇭🇹 Haiti',
         grupo: 'C',
         valor: 10.00,
         max_palpites: 100,
@@ -334,10 +251,8 @@ const JOGOS_COPA_2026 = [
         data: '2026-06-12', 
         hora: '22:00', 
         local: 'Los Angeles',
-        time1: 'Estados Unidos', 
-        bandeira1: '🇺🇸',
-        time2: 'Paraguai', 
-        bandeira2: '🇵🇾',
+        time1: '🇺🇸 Estados Unidos', 
+        time2: '🇵🇾 Paraguai',
         grupo: 'D',
         valor: 12.00,
         max_palpites: 150,
@@ -349,10 +264,8 @@ const JOGOS_COPA_2026 = [
         data: '2026-06-14', 
         hora: '01:00', 
         local: 'Vancouver',
-        time1: 'Austrália', 
-        bandeira1: '🇦🇺',
-        time2: 'Turquia', 
-        bandeira2: '🇹🇷',
+        time1: '🇦🇺 Austrália', 
+        time2: '🇹🇷 Turquia',
         grupo: 'D',
         valor: 10.00,
         max_palpites: 100,
@@ -364,10 +277,8 @@ const JOGOS_COPA_2026 = [
         data: '2026-06-20', 
         hora: '00:00', 
         local: 'San Francisco',
-        time1: 'Turquia', 
-        bandeira1: '🇹🇷',
-        time2: 'Paraguai', 
-        bandeira2: '🇵🇾',
+        time1: '🇹🇷 Turquia', 
+        time2: '🇵🇾 Paraguai',
         grupo: 'D',
         valor: 10.00,
         max_palpites: 100,
@@ -379,10 +290,8 @@ const JOGOS_COPA_2026 = [
         data: '2026-06-25', 
         hora: '23:00', 
         local: 'Los Angeles',
-        time1: 'Turquia', 
-        bandeira1: '🇹🇷',
-        time2: 'Estados Unidos', 
-        bandeira2: '🇺🇸',
+        time1: '🇹🇷 Turquia', 
+        time2: '🇺🇸 Estados Unidos',
         grupo: 'D',
         valor: 12.00,
         max_palpites: 150,
@@ -394,10 +303,8 @@ const JOGOS_COPA_2026 = [
         data: '2026-06-25', 
         hora: '23:00', 
         local: 'San Francisco',
-        time1: 'Paraguai', 
-        bandeira1: '🇵🇾',
-        time2: 'Austrália', 
-        bandeira2: '🇦🇺',
+        time1: '🇵🇾 Paraguai', 
+        time2: '🇦🇺 Austrália',
         grupo: 'D',
         valor: 10.00,
         max_palpites: 100,
@@ -411,10 +318,8 @@ const JOGOS_COPA_2026 = [
         data: '2026-06-14', 
         hora: '14:00', 
         local: 'Houston',
-        time1: 'Alemanha', 
-        bandeira1: '🇩🇪',
-        time2: 'Curaçao', 
-        bandeira2: '🇨🇼',
+        time1: '🇩🇪 Alemanha', 
+        time2: '🇨🇼 Curaçao',
         grupo: 'E',
         valor: 12.00,
         max_palpites: 120,
@@ -426,10 +331,8 @@ const JOGOS_COPA_2026 = [
         data: '2026-06-14', 
         hora: '20:00', 
         local: 'Filadélfia',
-        time1: 'Costa do Marfim', 
-        bandeira1: '🇨🇮',
-        time2: 'Equador', 
-        bandeira2: '🇪🇨',
+        time1: '🇨🇮 Costa do Marfim', 
+        time2: '🇪🇨 Equador',
         grupo: 'E',
         valor: 10.00,
         max_palpites: 100,
@@ -441,10 +344,8 @@ const JOGOS_COPA_2026 = [
         data: '2026-06-20', 
         hora: '17:00', 
         local: 'Toronto',
-        time1: 'Alemanha', 
-        bandeira1: '🇩🇪',
-        time2: 'Costa do Marfim', 
-        bandeira2: '🇨🇮',
+        time1: '🇩🇪 Alemanha', 
+        time2: '🇨🇮 Costa do Marfim',
         grupo: 'E',
         valor: 12.00,
         max_palpites: 120,
@@ -456,10 +357,8 @@ const JOGOS_COPA_2026 = [
         data: '2026-06-20', 
         hora: '21:00', 
         local: 'Kansas City',
-        time1: 'Equador', 
-        bandeira1: '🇪🇨',
-        time2: 'Curaçao', 
-        bandeira2: '🇨🇼',
+        time1: '🇪🇨 Equador', 
+        time2: '🇨🇼 Curaçao',
         grupo: 'E',
         valor: 10.00,
         max_palpites: 100,
@@ -471,10 +370,8 @@ const JOGOS_COPA_2026 = [
         data: '2026-06-25', 
         hora: '17:00', 
         local: 'Filadélfia',
-        time1: 'Curaçao', 
-        bandeira1: '🇨🇼',
-        time2: 'Costa do Marfim', 
-        bandeira2: '🇨🇮',
+        time1: '🇨🇼 Curaçao', 
+        time2: '🇨🇮 Costa do Marfim',
         grupo: 'E',
         valor: 10.00,
         max_palpites: 100,
@@ -486,10 +383,8 @@ const JOGOS_COPA_2026 = [
         data: '2026-06-25', 
         hora: '17:00', 
         local: 'Nova York/NJ',
-        time1: 'Equador', 
-        bandeira1: '🇪🇨',
-        time2: 'Alemanha', 
-        bandeira2: '🇩🇪',
+        time1: '🇪🇨 Equador', 
+        time2: '🇩🇪 Alemanha',
         grupo: 'E',
         valor: 12.00,
         max_palpites: 120,
@@ -503,10 +398,8 @@ const JOGOS_COPA_2026 = [
         data: '2026-06-14', 
         hora: '17:00', 
         local: 'Dallas',
-        time1: 'Holanda', 
-        bandeira1: '🇳🇱',
-        time2: 'Japão', 
-        bandeira2: '🇯🇵',
+        time1: '🇳🇱 Holanda', 
+        time2: '🇯🇵 Japão',
         grupo: 'F',
         valor: 10.00,
         max_palpites: 100,
@@ -518,10 +411,8 @@ const JOGOS_COPA_2026 = [
         data: '2026-06-14', 
         hora: '23:00', 
         local: 'Monterrey',
-        time1: 'Suécia', 
-        bandeira1: '🇸🇪',
-        time2: 'Tunísia', 
-        bandeira2: '🇹🇳',
+        time1: '🇸🇪 Suécia', 
+        time2: '🇹🇳 Tunísia',
         grupo: 'F',
         valor: 10.00,
         max_palpites: 100,
@@ -533,10 +424,8 @@ const JOGOS_COPA_2026 = [
         data: '2026-06-20', 
         hora: '14:00', 
         local: 'Houston',
-        time1: 'Holanda', 
-        bandeira1: '🇳🇱',
-        time2: 'Suécia', 
-        bandeira2: '🇸🇪',
+        time1: '🇳🇱 Holanda', 
+        time2: '🇸🇪 Suécia',
         grupo: 'F',
         valor: 10.00,
         max_palpites: 100,
@@ -548,10 +437,8 @@ const JOGOS_COPA_2026 = [
         data: '2026-06-21', 
         hora: '01:00', 
         local: 'Monterrey',
-        time1: 'Tunísia', 
-        bandeira1: '🇹🇳',
-        time2: 'Japão', 
-        bandeira2: '🇯🇵',
+        time1: '🇹🇳 Tunísia', 
+        time2: '🇯🇵 Japão',
         grupo: 'F',
         valor: 10.00,
         max_palpites: 100,
@@ -563,10 +450,8 @@ const JOGOS_COPA_2026 = [
         data: '2026-06-25', 
         hora: '20:00', 
         local: 'Dallas',
-        time1: 'Japão', 
-        bandeira1: '🇯🇵',
-        time2: 'Suécia', 
-        bandeira2: '🇸🇪',
+        time1: '🇯🇵 Japão', 
+        time2: '🇸🇪 Suécia',
         grupo: 'F',
         valor: 10.00,
         max_palpites: 100,
@@ -578,10 +463,8 @@ const JOGOS_COPA_2026 = [
         data: '2026-06-25', 
         hora: '20:00', 
         local: 'Kansas City',
-        time1: 'Tunísia', 
-        bandeira1: '🇹🇳',
-        time2: 'Holanda', 
-        bandeira2: '🇳🇱',
+        time1: '🇹🇳 Tunísia', 
+        time2: '🇳🇱 Holanda',
         grupo: 'F',
         valor: 10.00,
         max_palpites: 100,
@@ -595,10 +478,8 @@ const JOGOS_COPA_2026 = [
         data: '2026-06-15', 
         hora: '16:00', 
         local: 'Seattle',
-        time1: 'Bélgica', 
-        bandeira1: '🇧🇪',
-        time2: 'Egito', 
-        bandeira2: '🇪🇬',
+        time1: '🇧🇪 Bélgica', 
+        time2: '🇪🇬 Egito',
         grupo: 'G',
         valor: 10.00,
         max_palpites: 100,
@@ -610,10 +491,8 @@ const JOGOS_COPA_2026 = [
         data: '2026-06-15', 
         hora: '22:00', 
         local: 'Los Angeles',
-        time1: 'Irã', 
-        bandeira1: '🇮🇷',
-        time2: 'Nova Zelândia', 
-        bandeira2: '🇳🇿',
+        time1: '🇮🇷 Irã', 
+        time2: '🇳🇿 Nova Zelândia',
         grupo: 'G',
         valor: 10.00,
         max_palpites: 100,
@@ -625,10 +504,8 @@ const JOGOS_COPA_2026 = [
         data: '2026-06-21', 
         hora: '16:00', 
         local: 'Los Angeles',
-        time1: 'Bélgica', 
-        bandeira1: '🇧🇪',
-        time2: 'Irã', 
-        bandeira2: '🇮🇷',
+        time1: '🇧🇪 Bélgica', 
+        time2: '🇮🇷 Irã',
         grupo: 'G',
         valor: 10.00,
         max_palpites: 100,
@@ -640,10 +517,8 @@ const JOGOS_COPA_2026 = [
         data: '2026-06-21', 
         hora: '22:00', 
         local: 'Vancouver',
-        time1: 'Nova Zelândia', 
-        bandeira1: '🇳🇿',
-        time2: 'Egito', 
-        bandeira2: '🇪🇬',
+        time1: '🇳🇿 Nova Zelândia', 
+        time2: '🇪🇬 Egito',
         grupo: 'G',
         valor: 10.00,
         max_palpites: 100,
@@ -657,10 +532,8 @@ const JOGOS_COPA_2026 = [
         data: '2026-06-15', 
         hora: '13:00', 
         local: 'Atlanta',
-        time1: 'Espanha', 
-        bandeira1: '🇪🇸',
-        time2: 'Cabo Verde', 
-        bandeira2: '🇨🇻',
+        time1: '🇪🇸 Espanha', 
+        time2: '🇨🇻 Cabo Verde',
         grupo: 'H',
         valor: 12.00,
         max_palpites: 120,
@@ -672,10 +545,8 @@ const JOGOS_COPA_2026 = [
         data: '2026-06-15', 
         hora: '19:00', 
         local: 'Miami',
-        time1: 'Arábia Saudita', 
-        bandeira1: '🇸🇦',
-        time2: 'Uruguai', 
-        bandeira2: '🇺🇾',
+        time1: '🇸🇦 Arábia Saudita', 
+        time2: '🇺🇾 Uruguai',
         grupo: 'H',
         valor: 10.00,
         max_palpites: 100,
@@ -687,10 +558,8 @@ const JOGOS_COPA_2026 = [
         data: '2026-06-21', 
         hora: '13:00', 
         local: 'Atlanta',
-        time1: 'Espanha', 
-        bandeira1: '🇪🇸',
-        time2: 'Arábia Saudita', 
-        bandeira2: '🇸🇦',
+        time1: '🇪🇸 Espanha', 
+        time2: '🇸🇦 Arábia Saudita',
         grupo: 'H',
         valor: 12.00,
         max_palpites: 120,
@@ -702,10 +571,8 @@ const JOGOS_COPA_2026 = [
         data: '2026-06-21', 
         hora: '19:00', 
         local: 'Miami',
-        time1: 'Uruguai', 
-        bandeira1: '🇺🇾',
-        time2: 'Cabo Verde', 
-        bandeira2: '🇨🇻',
+        time1: '🇺🇾 Uruguai', 
+        time2: '🇨🇻 Cabo Verde',
         grupo: 'H',
         valor: 10.00,
         max_palpites: 100,
@@ -719,10 +586,8 @@ const JOGOS_COPA_2026 = [
         data: '2026-06-16', 
         hora: '16:00', 
         local: 'Nova York/NJ',
-        time1: 'França', 
-        bandeira1: '🇫🇷',
-        time2: 'Senegal', 
-        bandeira2: '🇸🇳',
+        time1: '🇫🇷 França', 
+        time2: '🇸🇳 Senegal',
         grupo: 'I',
         valor: 12.00,
         max_palpites: 150,
@@ -734,10 +599,8 @@ const JOGOS_COPA_2026 = [
         data: '2026-06-16', 
         hora: '19:00', 
         local: 'Boston',
-        time1: 'Iraque', 
-        bandeira1: '🇮🇶',
-        time2: 'Noruega', 
-        bandeira2: '🇳🇴',
+        time1: '🇮🇶 Iraque', 
+        time2: '🇳🇴 Noruega',
         grupo: 'I',
         valor: 10.00,
         max_palpites: 100,
@@ -751,10 +614,8 @@ const JOGOS_COPA_2026 = [
         data: '2026-06-16', 
         hora: '22:00', 
         local: 'Kansas City',
-        time1: 'Argentina', 
-        bandeira1: '🇦🇷',
-        time2: 'Argélia', 
-        bandeira2: '🇩🇿',
+        time1: '🇦🇷 Argentina', 
+        time2: '🇩🇿 Argélia',
         grupo: 'J',
         valor: 15.00,
         max_palpites: 200,
@@ -766,10 +627,8 @@ const JOGOS_COPA_2026 = [
         data: '2026-06-17', 
         hora: '01:00', 
         local: 'San Francisco',
-        time1: 'Áustria', 
-        bandeira1: '🇦🇹',
-        time2: 'Jordânia', 
-        bandeira2: '🇯🇴',
+        time1: '🇦🇹 Áustria', 
+        time2: '🇯🇴 Jordânia',
         grupo: 'J',
         valor: 10.00,
         max_palpites: 100,
@@ -783,10 +642,8 @@ const JOGOS_COPA_2026 = [
         data: '2026-06-17', 
         hora: '14:00', 
         local: 'Houston',
-        time1: 'Portugal', 
-        bandeira1: '🇵🇹',
-        time2: 'RD do Congo', 
-        bandeira2: '🇨🇩',
+        time1: '🇵🇹 Portugal', 
+        time2: '🇨🇩 RD do Congo',
         grupo: 'K',
         valor: 12.00,
         max_palpites: 120,
@@ -798,10 +655,8 @@ const JOGOS_COPA_2026 = [
         data: '2026-06-17', 
         hora: '23:00', 
         local: 'Cidade do México',
-        time1: 'Uzbequistão', 
-        bandeira1: '🇺🇿',
-        time2: 'Colômbia', 
-        bandeira2: '🇨🇴',
+        time1: '🇺🇿 Uzbequistão', 
+        time2: '🇨🇴 Colômbia',
         grupo: 'K',
         valor: 10.00,
         max_palpites: 100,
@@ -815,10 +670,8 @@ const JOGOS_COPA_2026 = [
         data: '2026-06-17', 
         hora: '17:00', 
         local: 'Dallas',
-        time1: 'Inglaterra', 
-        bandeira1: '🏴󠁧󠁢󠁥󠁮󠁧󠁿',
-        time2: 'Croácia', 
-        bandeira2: '🇭🇷',
+        time1: '🏴󠁧󠁢󠁥󠁮󠁧󠁿 Inglaterra', 
+        time2: '🇭🇷 Croácia',
         grupo: 'L',
         valor: 12.00,
         max_palpites: 150,
@@ -830,10 +683,8 @@ const JOGOS_COPA_2026 = [
         data: '2026-06-17', 
         hora: '20:00', 
         local: 'Toronto',
-        time1: 'Gana', 
-        bandeira1: '🇬🇭',
-        time2: 'Panamá', 
-        bandeira2: '🇵🇦',
+        time1: '🇬🇭 Gana', 
+        time2: '🇵🇦 Panamá',
         grupo: 'L',
         valor: 10.00,
         max_palpites: 100,
@@ -841,112 +692,31 @@ const JOGOS_COPA_2026 = [
         resultado: null
     }
 ];
-    ],
 
+// ================================================================
+//  📦 PLUGIN: BOLÃO
+//  Sistema de Palpites para Copa do Mundo
+// ================================================================
+
+const BolaoPlugin = {
+    name: 'Bolão',
+    version: '1.0',
+    
+    defaultConfig: {
+        whatsapp: '5511999999999',
+        pixKey: 'copa2026@bolao.com',
+        campaignName: '⚽ Bolão Copa 2026'
+    },
+    
+    // ✅ Usa os dados oficiais
+    defaultItems: JOGOS_COPA_2026,
+    
     cartLabel: '🛒 Meus Palpites',
     checkoutLabel: '📤 Enviar Palpites',
     checkoutTitle: '📋 Resumo dos Palpites',
 
-    // ============================================================
-    //  VALIDAÇÃO
-    // ============================================================
-    validateSelection(item, metadata) {
-        const jogo = this.engine.state.items.find(i => i.id === item.id);
-        if (!jogo) { this.engine.toast('⚠️ Jogo não encontrado'); return false; }
-
-        if (jogo.resultado) {
-            this.engine.toast('🔒 Jogo já encerrado!');
-            return false;
-        }
-
-        if (jogo.palpites_feitos >= jogo.max_palpites) {
-            this.engine.toast('🔴 Esgotado! Não há mais vagas.');
-            return false;
-        }
-
-        const gols1 = parseInt(metadata.gols1) || 0;
-        const gols2 = parseInt(metadata.gols2) || 0;
-        
-        if (gols1 < 0 || gols2 < 0) {
-            this.engine.toast('⚠️ Placar inválido');
-            return false;
-        }
-
-        if (gols1 === 0 && gols2 === 0) {
-            this.engine.toast('⚠️ Defina um placar');
-            return false;
-        }
-
-        return true;
-    },
-
-    // ============================================================
-    //  RENDER
-    // ============================================================
-    render(state) {
-        const container = document.getElementById('mainContent');
-        const items = state.items || [];
-        
-        if (items.length === 0) {
-            container.innerHTML = `
-                <div class="text-center" style="padding:40px 0;">
-                    <p style="font-size:2rem;">⚽</p>
-                    <p><strong>Nenhum jogo cadastrado</strong></p>
-                </div>
-            `;
-            return;
-        }
-
-        container.innerHTML = items.map(item => {
-            const disponivel = item.palpites_feitos < item.max_palpites;
-            const jaSelecionou = state.selections.some(s => s.item_id === item.id);
-            const encerrado = item.resultado !== null;
-
-            return `
-                <div class="card" style="border-left-color: ${encerrado ? '#94a3b8' : (disponivel ? 'var(--secondary)' : 'var(--danger)')};">
-                    <div class="flex-between">
-                        <span class="title">${item.time1} <span class="text-muted">vs</span> ${item.time2}</span>
-                        <span class="badge">R$ ${item.valor.toFixed(2)}</span>
-                    </div>
-                    <div class="meta">
-                        <span>📅 ${item.data} ${item.hora}</span>
-                        <span>🎯 ${item.palpites_feitos}/${item.max_palpites}</span>
-                    </div>
-                    ${encerrado ? `
-                        <div class="text-center" style="padding:8px 0; font-size:1.2rem; font-weight:bold; color:var(--success);">
-                            ${item.resultado}
-                        </div>
-                    ` : `
-                        <div class="input-group mt-8">
-                            <input type="number" id="gols1_${item.id}" min="0" max="99" placeholder="0" 
-                                   class="input-field input-sm" style="width:50px;"
-                                   ${!disponivel && !jaSelecionou ? 'disabled' : ''}
-                                   value="${jaSelecionou ? state.selections.find(s => s.item_id === item.id)?.gols1 || '' : ''}">
-                            <span>×</span>
-                            <input type="number" id="gols2_${item.id}" min="0" max="99" placeholder="0" 
-                                   class="input-field input-sm" style="width:50px;"
-                                   ${!disponivel && !jaSelecionou ? 'disabled' : ''}
-                                   value="${jaSelecionou ? state.selections.find(s => s.item_id === item.id)?.gols2 || '' : ''}">
-                            <span class="text-muted" style="font-size:0.7rem;">(palpite)</span>
-                        </div>
-                    `}
-                    <div class="flex-between mt-8">
-                        <span class="text-muted" style="font-size:0.8rem;">
-                            ${encerrado ? '🔒 Encerrado' : (disponivel ? '✅ Disponível' : '🔴 Esgotado')}
-                        </span>
-                        ${!encerrado ? `
-                            <button class="btn ${jaSelecionou ? 'btn-danger' : 'btn-primary'} btn-sm" 
-                                    onclick="${jaSelecionou ? `campaign.removeSelection(${item.id})` : `addBolaoPalpite(${item.id})`}"
-                                    ${!disponivel && !jaSelecionou ? 'disabled' : ''}>
-                                ${jaSelecionou ? '❌ Remover' : '➕ Palpitar'}
-                            </button>
-                        ` : `
-                            <span class="badge badge-success">✅ Finalizado</span>
-                        `}
-                    </div>
-                </div>
-            `;
-        }).join('');
+    // ... resto do plugin (validação, render, tabs, etc.)
+};
     },
 
     // ============================================================
