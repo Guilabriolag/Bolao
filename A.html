@@ -1,0 +1,324 @@
+<!doctype html>
+<html lang="pt-BR">
+ <head><script src="/_sdk/telemetry_sdk.js"></script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Álbum Copa 2026</title>
+  <script src="https://cdn.tailwindcss.com/3.4.17"></script>
+  <script src="https://cdn.jsdelivr.net/npm/lucide@0.263.0/dist/umd/lucide.min.js"></script>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700;900&amp;display=swap" rel="stylesheet">
+  <style>
+    body { font-family: 'DM Sans', sans-serif; }
+    .sticker-card { transition: transform 0.2s, box-shadow 0.2s; }
+    .sticker-card:hover { transform: translateY(-2px); box-shadow: 0 8px 24px rgba(0,0,0,0.15); }
+    .sticker-card.collected { border-color: #16a34a; }
+    .sticker-card:not(.collected) { opacity: 0.5; filter: grayscale(0.6); }
+    .progress-fill { transition: width 0.4s ease; }
+    .conf-tab { transition: background 0.2s, color 0.2s; }
+  </style>
+  <script src="/_sdk/resizing_sdk.js" type="text/javascript"></script>
+ </head>
+ <body data-template-id="__page-root" class="min-h-screen">
+  <header class="relative overflow-hidden">
+   <img data-template-id="hero-banner" class="canva-image w-full h-48 object-cover" loading="lazy">
+   <div class="absolute inset-0 bg-gradient-to-b from-black/60 to-black/80 flex items-center justify-center flex-col gap-2">
+    <h1 data-template-id="album-title" class="canva-text text-center font-black drop-shadow-lg"></h1>
+    <p data-template-id="album-subtitle" class="canva-text text-center"></p>
+   </div>
+  </header>
+  <main class="max-w-5xl mx-auto p-4 sm:p-6">
+   <!-- Redeem Section -->
+   <section class="mb-6 p-4 bg-gradient-to-r from-amber-50 to-orange-50 rounded-xl border border-amber-200">
+    <div class="flex flex-col sm:flex-row gap-3 items-center">
+     <div class="flex-1"><label data-template-id="redeem-label" class="canva-text text-sm font-medium block mb-2" for="redeem-input"></label><input id="redeem-input" type="text" placeholder="Insira o código aqui" maxlength="8" class="w-full border border-amber-300 rounded-lg px-3 py-2 text-sm bg-white focus:outline-none focus:ring-2 focus:ring-amber-500">
+     </div><button data-template-id="redeem-btn" class="canva-button px-6 py-2 rounded-lg font-medium whitespace-nowrap" onclick="handleRedeem()"></button>
+    </div>
+   </section><!-- Progress -->
+   <section class="mb-6">
+    <div class="flex justify-between items-center mb-2">
+     <span data-template-id="progress-label" class="canva-text font-medium"></span> <span id="progress-text" class="text-sm font-bold text-emerald-600">0/0</span>
+    </div>
+    <div class="w-full h-3 bg-gray-200 rounded-full overflow-hidden">
+     <div id="progress-bar" class="progress-fill h-full bg-gradient-to-r from-emerald-400 to-emerald-600 rounded-full" style="width:0%"></div>
+    </div>
+   </section><!-- Confederation Tabs -->
+   <div class="flex flex-wrap gap-2 mb-4" id="conf-tabs">
+    <button class="conf-tab px-3 py-1.5 rounded-full text-sm font-medium bg-emerald-600 text-white" data-conf="all">Todos (48)</button> <button class="conf-tab px-3 py-1.5 rounded-full text-sm font-medium bg-gray-200 text-gray-700" data-conf="UEFA">🌍 UEFA (16)</button> <button class="conf-tab px-3 py-1.5 rounded-full text-sm font-medium bg-gray-200 text-gray-700" data-conf="CAF">🌍 CAF (10)</button> <button class="conf-tab px-3 py-1.5 rounded-full text-sm font-medium bg-gray-200 text-gray-700" data-conf="AFC">🌏 AFC (9)</button> <button class="conf-tab px-3 py-1.5 rounded-full text-sm font-medium bg-gray-200 text-gray-700" data-conf="CONMEBOL">🌎 CONMEBOL (6)</button> <button class="conf-tab px-3 py-1.5 rounded-full text-sm font-medium bg-gray-200 text-gray-700" data-conf="CONCACAF">🌎 CONCACAF (6)</button> <button class="conf-tab px-3 py-1.5 rounded-full text-sm font-medium bg-gray-200 text-gray-700" data-conf="OFC">🐋 OFC (1)</button>
+   </div><!-- Team filters -->
+   <div id="team-filters" class="flex flex-wrap gap-2 mb-4"></div><!-- Add button -->
+   <div class="flex mb-4">
+    <button data-template-id="add-btn" class="canva-button ml-auto px-4 py-2 rounded-lg font-medium flex items-center gap-1" onclick="toggleForm()"> <i data-lucide="plus" style="width:16px;height:16px"></i> </button>
+   </div><!-- Add Form -->
+   <form id="add-form" class="hidden mb-6 p-4 rounded-xl bg-white shadow-lg border border-gray-100" onsubmit="handleAdd(event)">
+    <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+     <div><label data-template-id="label-name" class="canva-text text-sm font-medium block mb-1" for="inp-name"></label><input id="inp-name" type="text" required class="w-full border rounded-lg px-3 py-2 text-sm">
+     </div>
+     <div><label data-template-id="label-team" class="canva-text text-sm font-medium block mb-1" for="inp-team"></label><input id="inp-team" type="text" required class="w-full border rounded-lg px-3 py-2 text-sm">
+     </div>
+     <div><label data-template-id="label-position" class="canva-text text-sm font-medium block mb-1" for="inp-pos"></label><input id="inp-pos" type="text" required class="w-full border rounded-lg px-3 py-2 text-sm">
+     </div>
+    </div>
+    <div class="flex gap-2 mt-3">
+     <button data-template-id="save-btn" type="submit" class="canva-button px-4 py-2 rounded-lg font-medium"></button> <button data-template-id="cancel-btn" type="button" class="canva-button px-4 py-2 rounded-lg font-medium" onclick="toggleForm()"></button>
+    </div>
+   </form><!-- Sticker Grid -->
+   <div id="sticker-grid" class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-3"></div>
+   <p id="empty-msg" data-template-id="empty-state" class="canva-text text-center py-12 hidden"></p>
+   <div id="limit-warning" class="hidden mt-4 p-3 bg-red-50 border border-red-200 rounded-lg text-red-700 text-sm text-center">
+    Limite de 999 figurinhas atingido!
+   </div>
+  </main>
+  <script src="/_sdk/data_sdk.js"></script>
+  <script src="/_sdk/editing_sdk.js"></script>
+  <script>
+    // Team data by confederation
+    const TEAMS = {
+      UEFA: ['🇩🇪 Alemanha','🇦🇹 Áustria','🇧🇪 Bélgica','🇧🇦 Bósnia e Herzegovina','🇭🇷 Croácia','🏴󠁧󠁢󠁳󠁣󠁴󠁿 Escócia','🇪🇸 Espanha','🇫🇷 França','🇳🇱 Holanda','🏴󠁧󠁢󠁥󠁮󠁧󠁿 Inglaterra','🇳🇴 Noruega','🇵🇹 Portugal','🇨🇿 República Tcheca','🇸🇪 Suécia','🇨🇭 Suíça','🇹🇷 Turquia'],
+      CAF: ['🇿🇦 África do Sul','🇩🇿 Argélia','🇨🇻 Cabo Verde','🇨🇮 Costa do Marfim','🇪🇬 Egito','🇬🇭 Gana','🇲🇦 Marrocos','🇨🇩 RD do Congo','🇸🇳 Senegal','🇹🇳 Tunísia'],
+      AFC: ['🇸🇦 Arábia Saudita','🇦🇺 Austrália','🇶🇦 Catar','🇰🇷 Coreia do Sul','🇮🇷 Irã','🇮🇶 Iraque','🇯🇵 Japão','🇯🇴 Jordânia','🇺🇿 Uzbequistão'],
+      CONMEBOL: ['🇦🇷 Argentina','🇧🇷 Brasil','🇨🇴 Colômbia','🇪🇨 Equador','🇵🇾 Paraguai','🇺🇾 Uruguai'],
+      CONCACAF: ['🇨🇦 Canadá','🇺🇸 Estados Unidos','🇲🇽 México','🇨🇼 Curaçau','🇭🇹 Haiti','🇵🇦 Panamá'],
+      OFC: ['🇳🇿 Nova Zelândia']
+    };
+
+    // Map team display name (without flag) to confederation
+    const teamToConf = {};
+    Object.entries(TEAMS).forEach(([conf, teams]) => {
+      teams.forEach(t => {
+        const name = t.replace(/^.+\s/, '').trim();
+        // Get name after flag emoji and space
+        const parts = t.split(' ');
+        const teamName = parts.slice(1).join(' ');
+        teamToConf[teamName] = conf;
+      });
+    });
+
+    // Build flat list of team names
+    const allTeamNames = Object.values(TEAMS).flat().map(t => { const p = t.split(' '); return p.slice(1).join(' '); });
+
+    let allData = [];
+    let activeConf = 'all';
+    let activeTeam = null;
+
+    const dataHandler = {
+      onDataChanged(data) {
+        allData = data;
+        updateProgress();
+        renderTeamFilters();
+        renderGrid();
+      }
+    };
+
+    async function init() {
+      const r = await window.dataSdk.init(dataHandler);
+      if (!r.isOk) console.error('SDK init failed');
+      lucide.createIcons();
+      setupConfTabs();
+    }
+    init();
+
+    function setupConfTabs() {
+      document.querySelectorAll('#conf-tabs button').forEach(btn => {
+        btn.onclick = () => {
+          activeConf = btn.dataset.conf;
+          activeTeam = null;
+          updateConfTabStyles();
+          renderTeamFilters();
+          renderGrid();
+        };
+      });
+    }
+
+    function updateConfTabStyles() {
+      document.querySelectorAll('#conf-tabs button').forEach(btn => {
+        if (btn.dataset.conf === activeConf) {
+          btn.className = 'conf-tab px-3 py-1.5 rounded-full text-sm font-medium bg-emerald-600 text-white';
+        } else {
+          btn.className = 'conf-tab px-3 py-1.5 rounded-full text-sm font-medium bg-gray-200 text-gray-700';
+        }
+      });
+    }
+
+    function getTeamsForConf(conf) {
+      if (conf === 'all') return Object.values(TEAMS).flat();
+      return TEAMS[conf] || [];
+    }
+
+    function renderTeamFilters() {
+      const container = document.getElementById('team-filters');
+      container.innerHTML = '';
+      const teams = getTeamsForConf(activeConf);
+      teams.forEach(t => {
+        const btn = document.createElement('button');
+        const teamName = t.split(' ').slice(1).join(' ');
+        btn.textContent = t;
+        btn.className = activeTeam === teamName
+          ? 'px-3 py-1.5 rounded-full text-xs font-medium bg-emerald-600 text-white'
+          : 'px-3 py-1.5 rounded-full text-xs font-medium bg-white border text-gray-700';
+        btn.onclick = () => {
+          activeTeam = activeTeam === teamName ? null : teamName;
+          renderTeamFilters();
+          renderGrid();
+        };
+        container.appendChild(btn);
+      });
+    }
+
+    function updateProgress() {
+      const total = allData.length;
+      const collected = allData.filter(d => d.collected).length;
+      document.getElementById('progress-text').textContent = `${collected}/${total}`;
+      document.getElementById('progress-bar').style.width = total ? `${(collected/total)*100}%` : '0%';
+    }
+
+    function getFilteredData() {
+      let data = allData;
+      if (activeConf !== 'all') {
+        const confTeams = TEAMS[activeConf].map(t => t.split(' ').slice(1).join(' '));
+        data = data.filter(d => confTeams.includes(d.team));
+      }
+      if (activeTeam) {
+        data = data.filter(d => d.team === activeTeam);
+      }
+      return data;
+    }
+
+    function renderGrid() {
+      const filtered = getFilteredData();
+      const grid = document.getElementById('sticker-grid');
+      const empty = document.getElementById('empty-msg');
+      empty.classList.toggle('hidden', filtered.length > 0);
+      grid.classList.toggle('hidden', filtered.length === 0);
+
+      const existingMap = new Map([...grid.children].map(el => [el.dataset.id, el]));
+      const newIds = new Set(filtered.map(d => d.__backendId));
+      existingMap.forEach((el, id) => { if (!newIds.has(id)) el.remove(); });
+
+      filtered.forEach(item => {
+        let card = existingMap.get(item.__backendId);
+        if (!card) {
+          card = document.createElement('div');
+          card.dataset.id = item.__backendId;
+          card.className = 'sticker-card border-2 rounded-xl p-3 bg-white cursor-pointer flex flex-col items-center text-center gap-1';
+          card.innerHTML = `
+            <div class="w-12 h-12 rounded-full bg-gray-100 flex items-center justify-center text-2xl font-bold text-emerald-700 shrink-0 sticker-avatar"></div>
+            <span class="font-bold text-sm mt-1 sticker-name"></span>
+            <span class="text-xs text-gray-500 sticker-team"></span>
+            <span class="text-xs text-gray-400 sticker-pos"></span>
+            <span class="mt-auto pt-1 text-xs font-medium sticker-status"></span>
+          `;
+          grid.appendChild(card);
+        }
+        card.querySelector('.sticker-avatar').textContent = (item.player_name || '?')[0].toUpperCase();
+        card.querySelector('.sticker-name').textContent = item.player_name;
+        card.querySelector('.sticker-team').textContent = item.team;
+        card.querySelector('.sticker-pos').textContent = item.position;
+        const status = card.querySelector('.sticker-status');
+        if (item.collected) {
+          card.classList.add('collected');
+          card.classList.remove('border-gray-200');
+          card.classList.add('border-emerald-500');
+          status.textContent = '✓ Colada';
+          status.className = 'mt-auto pt-1 text-xs font-medium text-emerald-600 sticker-status';
+        } else {
+          card.classList.remove('collected');
+          card.classList.add('border-gray-200');
+          card.classList.remove('border-emerald-500');
+          status.textContent = '○ Faltando';
+          status.className = 'mt-auto pt-1 text-xs font-medium text-gray-400 sticker-status';
+        }
+        card.onclick = () => toggleCollected(item);
+      });
+    }
+
+    async function toggleCollected(item) {
+      const updated = { ...item, collected: !item.collected };
+      const r = await window.dataSdk.update(updated);
+      if (!r.isOk) showToast('Erro ao atualizar');
+    }
+
+    async function handleRedeem() {
+      const code = document.getElementById('redeem-input').value.trim().toUpperCase();
+      if (!code) {
+        showToast('Digite um código para resgatar!');
+        return;
+      }
+      if (code.length < 4 || code.length > 8) {
+        showToast('Código inválido!');
+        return;
+      }
+      if (allData.length >= 999) {
+        document.getElementById('limit-warning').classList.remove('hidden');
+        showToast('Limite de figurinhas atingido!');
+        return;
+      }
+
+      // Get 7 random teams from all available teams
+      const allTeams = Object.values(TEAMS).flat().map(t => t.split(' ').slice(1).join(' '));
+      const randomTeams = [];
+      for (let i = 0; i < Math.min(7, 999 - allData.length); i++) {
+        const idx = Math.floor(Math.random() * allTeams.length);
+        randomTeams.push(allTeams[idx]);
+      }
+
+      // Create stickers for each random team
+      let successCount = 0;
+      for (const team of randomTeams) {
+        const positions = ['Goleiro', 'Defesa', 'Meio-campo', 'Atacante'];
+        const pos = positions[Math.floor(Math.random() * positions.length)];
+        const firstLetter = String.fromCharCode(65 + Math.floor(Math.random() * 26));
+        const secondLetter = String.fromCharCode(65 + Math.floor(Math.random() * 26));
+        const playerName = `Jogador ${firstLetter}${secondLetter}`;
+
+        const r = await window.dataSdk.create({
+          player_id: `${code}-${Date.now()}-${successCount}`,
+          player_name: playerName,
+          team: team,
+          position: pos,
+          collected: true
+        });
+        if (r.isOk) successCount++;
+      }
+
+      if (successCount > 0) {
+        showToast(`🎉 ${successCount} figurinhas resgatadas e coladas!`);
+        document.getElementById('redeem-input').value = '';
+      } else {
+        showToast('Erro ao resgatar figurinhas');
+      }
+    }
+
+    function toggleForm() {
+      document.getElementById('add-form').classList.toggle('hidden');
+    }
+
+    async function handleAdd(e) {
+      e.preventDefault();
+      if (allData.length >= 999) {
+        document.getElementById('limit-warning').classList.remove('hidden');
+        return;
+      }
+      const name = document.getElementById('inp-name').value.trim();
+      const team = document.getElementById('inp-team').value.trim();
+      const pos = document.getElementById('inp-pos').value.trim();
+      const r = await window.dataSdk.create({
+        player_id: Date.now().toString(),
+        player_name: name,
+        team: team,
+        position: pos,
+        collected: false
+      });
+      if (r.isOk) { e.target.reset(); toggleForm(); }
+      else showToast('Erro ao adicionar');
+    }
+
+    function showToast(msg) {
+      const t = document.createElement('div');
+      t.className = 'fixed bottom-4 left-1/2 -translate-x-1/2 bg-gray-900 text-white px-4 py-2 rounded-lg text-sm z-50';
+      t.textContent = msg;
+      document.body.appendChild(t);
+      setTimeout(() => t.remove(), 2500);
+    }
+  </script>
+ <script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'a118ad2a63baa156',t:'MTc4MjQzOTgzNS4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+</html>
