@@ -38,9 +38,16 @@
 //  OPÇÃO ATUAL (DESCOMENTE A QUE QUISER USAR)
 // ============================================================
 
+
 document.addEventListener('DOMContentLoaded', () => {
-    // Mude aqui para trocar de plugin
-    initCampaign(BolaoPlugin);
+    // Carregar jogos da Copa 2026
+    const jogos = JOGOS_COPA_2026;
+    
+    // Inicializar com os dados
+    initCampaign({
+        ...BolaoPlugin,
+        defaultItems: jogos
+    });
     
     document.getElementById('campaignTitle').textContent = '⚽ Bolão Copa 2026';
     document.getElementById('campaignSubtitle').textContent = 'Palpite nos jogos e concorra a prêmios!';
