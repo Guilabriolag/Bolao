@@ -50,10 +50,6 @@ const BolaoPlugin = {
             palpites_feitos: 0, 
             resultado: null 
         },
-        // ================================================================
-//  📦 DADOS OFICIAIS - COPA DO MUNDO 2026
-//  Fase de Grupos - Todos os 48 jogos
-// ================================================================
 
 const JOGOS_COPA_2026 = [
     // ==================== GRUPO A ====================
